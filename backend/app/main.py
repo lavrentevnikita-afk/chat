@@ -15,6 +15,7 @@ from .api.v1.auth import router as auth_router
 from .api.v1.tasks import router as tasks_router
 from .api.v1.messages import router as messages_router
 from .api.v1.push import router as push_router
+from .api.v1.files import router as files_router
 
 # Import Socket.IO instance
 from .sockets import sio
@@ -30,6 +31,7 @@ app.include_router(auth_router)
 app.include_router(tasks_router)
 app.include_router(messages_router)
 app.include_router(push_router)
+app.include_router(files_router)
 
 # CORS middleware
 app.add_middleware(

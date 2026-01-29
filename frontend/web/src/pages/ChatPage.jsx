@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import { messagesApi } from '../api';
+import FileUpload from '../components/FileUpload';
+import AttachmentList from '../components/AttachmentList';
 import './Chat.css';
 
 function MessageBubble({ m, currentUserId }) {
@@ -19,6 +21,9 @@ function MessageBubble({ m, currentUserId }) {
       <div className="bubble-body">
         {!isMe && <div className="sender">{m.sender_username}</div>}
         <div className="text">{m.content}</div>
+        {m.attachments && m.attachments.length > 0 && (
+          <AttachmentList attachments={m.attachments} />
+        )}
         <div className="time">{time}</div>
       </div>
     </div>
@@ -173,6 +178,15 @@ export default function ChatPage() {
         </div>
 
         <div className="composer">
+          <FileUpload onUpload={(file) => {
+            if (socket) {
+              socket.emit('send_message', { 
+                content: `📎 ${file.original_name}`, 
+                room: 'general',
+                attachment_id: file.id 
+              });
+            }
+          }} />
           <input 
             ref={inputRef} 
             placeholder="Написать сообщение..." 

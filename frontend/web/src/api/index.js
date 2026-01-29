@@ -166,3 +166,51 @@ export const messagesApi = {
     return response.ok;
   },
 };
+
+// Files API
+export const filesApi = {
+  async upload(file, messageId = null, taskId = null) {
+    const token = localStorage.getItem('access_token');
+    const formData = new FormData();
+    formData.append('file', file);
+    if (messageId) formData.append('message_id', messageId);
+    if (taskId) formData.append('task_id', taskId);
+    
+    const response = await fetch(`/api/v1/files/upload`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      body: formData,
+    });
+    
+    if (response.ok) return await response.json();
+    const error = await response.json();
+    throw new Error(error.detail || 'Upload failed');
+  },
+
+  getUrl(fileId) {
+    return `/api/v1/files/${fileId}`;
+  },
+
+  getThumbnailUrl(fileId) {
+    return `/api/v1/files/${fileId}/thumb`;
+  },
+
+  async delete(fileId) {
+    const response = await apiRequest(`/files/${fileId}`, { method: 'DELETE' });
+    return response.ok;
+  },
+
+  async getMessageAttachments(messageId) {
+    const response = await apiRequest(`/files/message/${messageId}`);
+    if (response.ok) return await response.json();
+    return [];
+  },
+
+  async getTaskAttachments(taskId) {
+    const response = await apiRequest(`/files/task/${taskId}`);
+    if (response.ok) return await response.json();
+    return [];
+  },
+};

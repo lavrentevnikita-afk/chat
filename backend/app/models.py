@@ -44,3 +44,17 @@ class PushSubscription(Base):
     p256dh = Column(String(256))
     auth = Column(String(256))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+
+class Attachment(Base):
+    __tablename__ = 'attachments'
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    message_id = Column(Integer, ForeignKey('messages.id'), nullable=True)
+    task_id = Column(Integer, ForeignKey('tasks.id'), nullable=True)
+    original_name = Column(String(512))
+    stored_name = Column(String(256))
+    file_type = Column(String(32))  # image, document, archive, other
+    size = Column(Integer)  # bytes
+    mime_type = Column(String(128))
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
