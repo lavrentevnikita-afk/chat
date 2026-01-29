@@ -17,6 +17,8 @@ services:
       DATABASE_URL: postgresql://tm_user:tm_pass@db:5432/team_messenger
       SECRET_KEY: supersecretchangeme
       PYTHONUNBUFFERED: '1'
+      VAPID_PUBLIC_KEY: BOUX7IvvFoOH7_FdtU4j2q_Co3FIOBwtTjl2Jcd1LTv0DlpGsPLDWsDyKtTkGdTiy5oy63q8Jiun50pkOd6H_hQ
+      VAPID_PRIVATE_KEY: BGyimGJoyPXAYYkp7I1obTRYaLNtIysKA_EoNAg23_0
     depends_on:
       - db
     ports:

@@ -14,6 +14,9 @@ export default function Navigation({ user, connected }) {
           <NavLink to="/tasks" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             📋 Задачи
           </NavLink>
+          <NavLink to="/settings" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+            ⚙️
+          </NavLink>
         </nav>
       </div>
       

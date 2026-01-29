@@ -14,6 +14,7 @@ from .crud import create_user
 from .api.v1.auth import router as auth_router
 from .api.v1.tasks import router as tasks_router
 from .api.v1.messages import router as messages_router
+from .api.v1.push import router as push_router
 
 # Import Socket.IO instance
 from .sockets import sio
@@ -28,6 +29,7 @@ app = FastAPI(title='Team Messenger', version='0.0.5')
 app.include_router(auth_router)
 app.include_router(tasks_router)
 app.include_router(messages_router)
+app.include_router(push_router)
 
 # CORS middleware
 app.add_middleware(
