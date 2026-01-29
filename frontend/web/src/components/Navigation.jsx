@@ -14,6 +14,11 @@ export default function Navigation({ user, connected }) {
           <NavLink to="/tasks" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             📋 Задачи
           </NavLink>
+          {user?.role === 'admin' && (
+            <NavLink to="/admin" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
+              🛠️ Админ
+            </NavLink>
+          )}
           <NavLink to="/settings" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>
             ⚙️
           </NavLink>

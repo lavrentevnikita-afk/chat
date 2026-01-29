@@ -63,7 +63,7 @@ export default function Layout() {
         <Outlet context={{ user, socket, connected }} />
       </main>
       <ToastContainer />
-      <div className="version-badge">v0.1.2</div>
+      <div className="version-badge">v0.1.3</div>
     </div>
   );
 }

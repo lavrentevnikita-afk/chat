@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import TasksPage from './pages/TasksPage'
 import SettingsPage from './pages/SettingsPage'
+import AdminPage from './pages/AdminPage'
 import { authApi } from './api'
 import './styles.css'
 
@@ -33,6 +34,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<ChatPage />} />
         <Route path="/tasks" element={<TasksPage />} />
         <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Route>
     </Routes>
   </BrowserRouter>
