@@ -14,13 +14,15 @@ import shutil
 
 # Import routers
 from .api.v1.auth import router as auth_router
+from .api.v1.tasks import router as tasks_router
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title='Team Messenger', version='0.0.3')
+app = FastAPI(title='Team Messenger', version='0.0.4')
 
 # Include routers
 app.include_router(auth_router)
+app.include_router(tasks_router)
 
 app.add_middleware(
     CORSMiddleware,
