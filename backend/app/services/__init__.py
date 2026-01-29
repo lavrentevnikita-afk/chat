@@ -1,1 +1,4 @@
-# services packagefrom . import task_service
+# services package
+from . import task_service
+from . import message_service
+
