@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: tm_user
+      POSTGRES_PASSWORD: tm_pass
+      POSTGRES_DB: team_messenger
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - tm_net
+
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql://tm_user:tm_pass@db:5432/team_messenger
+      SECRET_KEY: supersecretchangeme
+      PYTHONUNBUFFERED: '1'
+    depends_on:
+      - db
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./backend/app:/app/app
+      - ./uploads:/app/uploads
+    networks:
+      - tm_net
+  frontend:
+    build: ./frontend/web
+    ports:
+      - '80:80'
+    networks:
+      - tm_net
+
+volumes:
+  db_data:
+  # caddy_data and caddy_config removed; add if you re-enable caddy
+
+networks:
+  tm_net:
+    driver: bridge

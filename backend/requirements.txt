@@ -1,0 +1,14 @@
+fastapi>=0.95
+uvicorn[standard]>=0.22
+python-socketio[asyncio_client]==5.9.0
+python-socketio[server]==5.9.0
+SQLAlchemy>=1.4
+psycopg2-binary>=2.9
+alembic>=1.8
+passlib[bcrypt]>=1.7
+pyjwt>=2.6
+python-multipart>=0.0.5
+aiofiles>=23.1
+requests>=2.30
+Pillow>=10.0
+pywebpush>=1.13.1

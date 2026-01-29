@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Team Messenger + Tasks</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>Team Messenger</h1>
+      <div>
+        Имя: <input id="username" placeholder="Ваше имя" />
+      </div>
+    </header>
+
+    <main>
+      <section class="left">
+        <h2>Чат</h2>
+        <div id="messages" class="box"></div>
+        <div class="controls">
+          <input id="messageInput" placeholder="Сообщение..." />
+          <button id="sendBtn">Отправить</button>
+        </div>
+      </section>
+
+      <section class="right">
+        <h2>Задачи</h2>
+        <div id="tasks" class="box"></div>
+
+        <h3>Создать задачу</h3>
+        <input id="taskTitle" placeholder="Краткое название" />
+        <input id="taskAssigned" placeholder="Назначить (имя)" />
+        <textarea id="taskDesc" placeholder="Описание"></textarea>
+        <button id="createTaskBtn">Создать</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+:80
+respond "Caddy placeholder - configure your domain and reverse proxies"
