@@ -84,7 +84,14 @@ export const authApi = {
       return { success: true, data };
     }
     const error = await response.json().catch(() => ({ detail: 'Login failed' }));
-    return { success: false, error: error.detail };
+    // Handle FastAPI validation errors (detail is array) vs simple errors (detail is string)
+    let errorMsg = 'Ошибка входа';
+    if (typeof error.detail === 'string') {
+      errorMsg = error.detail;
+    } else if (Array.isArray(error.detail) && error.detail.length > 0) {
+      errorMsg = error.detail.map(e => e.msg || e.message || JSON.stringify(e)).join('; ');
+    }
+    return { success: false, error: errorMsg };
   },
 
   async getMe() {

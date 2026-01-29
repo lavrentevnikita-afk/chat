@@ -20,8 +20,8 @@ export default function RegisterPage() {
       return;
     }
     
-    if (password.length < 4) {
-      setError('Пароль должен быть минимум 4 символа');
+    if (password.length < 6) {
+      setError('Пароль должен быть минимум 6 символов');
       return;
     }
     
@@ -40,7 +40,14 @@ export default function RegisterPage() {
       }
     } else {
       const data = await response.json().catch(() => ({ detail: 'Ошибка регистрации' }));
-      setError(data.detail || 'Ошибка регистрации');
+      // Handle FastAPI validation errors
+      let errorMsg = 'Ошибка регистрации';
+      if (typeof data.detail === 'string') {
+        errorMsg = data.detail;
+      } else if (Array.isArray(data.detail) && data.detail.length > 0) {
+        errorMsg = data.detail.map(e => e.msg || e.message || JSON.stringify(e)).join('; ');
+      }
+      setError(errorMsg);
       setLoading(false);
     }
   };
