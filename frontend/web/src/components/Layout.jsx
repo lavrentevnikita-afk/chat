@@ -40,7 +40,7 @@ export default function Layout() {
       <main className="layout-main">
         <Outlet context={{ user, socket, connected }} />
       </main>
-      <div className="version-badge">v0.0.7</div>
+      <div className="version-badge">v0.0.8</div>
     </div>
   );
 }
