@@ -59,7 +59,7 @@ export default function App(){
           </div>
         </section>
       </main>
-      <div className="version-badge">v0.0.1</div>
+      <div className="version-badge">v0.0.3</div>
     </div>
   )
 }

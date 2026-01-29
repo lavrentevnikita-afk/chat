@@ -5,18 +5,22 @@ import socketio
 from .db import engine, Base, get_db, SessionLocal
 from . import crud, schemas
 from sqlalchemy.orm import Session
-from .auth import create_access_token, verify_password, decode_token
-from .config import UPLOAD_FOLDER
+from .core.security import create_access_token, verify_password, decode_token
+from .core.config import UPLOAD_FOLDER
 import os
 from .models import User
-from starlette.middleware.authentication import AuthenticationMiddleware
 from typing import Optional
-import os
 import shutil
+
+# Import routers
+from .api.v1.auth import router as auth_router
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title='Team Messenger')
+app = FastAPI(title='Team Messenger', version='0.0.3')
+
+# Include routers
+app.include_router(auth_router)
 
 app.add_middleware(
     CORSMiddleware,
