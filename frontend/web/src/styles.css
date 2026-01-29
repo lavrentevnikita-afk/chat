@@ -4,13 +4,20 @@ body,html,#root{height:100%;margin:0}
 .tm-container{height:100vh;display:flex;flex-direction:column;font-family:Segoe UI, Roboto, Arial, sans-serif;background:var(--bg)}
 .tm-header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--primary);color:#fff}
 .tm-header .title{font-weight:700}
-.tm-header .name{padding:8px;border-radius:6px;border:none}
+.tm-header .header-right{display:flex;align-items:center;gap:12px}
+.tm-header .username{font-weight:500}
+.tm-header .status-dot{width:8px;height:8px;border-radius:50%;background:#ffc107}
+.tm-header .status-dot.online{background:#4caf50}
+.tm-header .status-dot.offline{background:#f44336}
+.tm-header .logout-btn{padding:6px 12px;border-radius:6px;border:none;background:rgba(255,255,255,0.2);color:#fff;cursor:pointer;font-size:13px}
+.tm-header .logout-btn:hover{background:rgba(255,255,255,0.3)}
 .tm-main{flex:1;display:flex;gap:12px;padding:12px}
 .chat{flex:1;display:flex;flex-direction:column;height:100%}
 .messages{flex:1;background:linear-gradient(180deg,#eaf1ff, #f7fbff);padding:16px;overflow:auto;display:flex;flex-direction:column;gap:10px;border-radius:8px}
 .composer{display:flex;gap:8px;padding:12px;margin-top:8px}
 .composer input{flex:1;padding:12px;border-radius:20px;border:1px solid #dbe7ff}
-.composer .send{width:44px;height:44px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px}
+.composer .send{width:44px;height:44px;border-radius:50%;border:none;background:var(--primary);color:#fff;font-size:18px;cursor:pointer}
+.composer .send:hover{background:#1e5bc4}
 
 .bubble{display:flex;align-items:flex-end;gap:8px}
 .bubble.them{justify-content:flex-start}
@@ -27,3 +34,4 @@ body,html,#root{height:100%;margin:0}
 }
 
 .version-badge{position:fixed;bottom:8px;right:12px;font-size:11px;color:#888;background:rgba(255,255,255,0.8);padding:2px 8px;border-radius:4px}
+
